@@ -2,11 +2,15 @@
 
 # Use the sys module
 import sys
+import string
 
 # 'file' in this case is STDIN
 def read_input(file):
     # Split each line into words
     for line in file:
+        line = line.lower()
+        for c in string.punctuation:
+            line = line.replace(c,"")
         yield line.split()
 
 def main(separator='\t'):
