@@ -1,0 +1,35 @@
+    2  wget http://www.gutenberg.org/ebooks/100.html.noimages
+   10  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:~/100.txt.utf-8 -output wasb:~/output.txt
+   11  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input ~/100.txt.utf-8 -output ~/output.txt
+   14  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/data/gutenberg/davinci.txt -output wasb:///example/wordcountout
+   15  vi wasb:///example/wordcountout
+   
+   18  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/data/gutenberg/davinci.txt -output wasb:///example/wordcountout
+   19  vi wasb://jrew@jrew.blob.core.windows.net/example/wordcountout
+   20  vi //jrew@jrew.blob.core.windows.net/example/wordcountout
+   21  hadoop fs wasb://jrew@jrew.blob.core.windows.net/example/wordcountout
+   22  hadoop fs -text  wasb://jrew@jrew.blob.core.windows.net/example/wordcountout
+   23  hadoop fs -text //jrew@jrew.blob.core.windows.net/example/wordcountout
+   24  hadoop fs -text ///example/wordcountout
+   25  hadoop fs -text ///example/wordcountout/part-00000
+   27  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/data/gutenberg/davinci.txt -output wasb:///example/wordcountout
+   28  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/data/gutenberg/davinci.txt -output wasb:///example/wordcountout2
+   29  hadoop fs -text ///example/wordcountout2/part-00000
+   30  ls
+   31  hadoop fs -copyFromLocal 100.txt.utf-8 ///example/100.txt.utf-8
+   32  hadoop fs -text ///example/100.txt.utf-8
+   33  ls
+   34  yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input wasb:///example/100.txt.utf-8 -output wasb:///example/wordcountout_shakes
+   35  hadoop fs -text ///example/wordcountout_shakes/part-00000
+   36  hadoop fs -copyToLocal ///example/wordcountout_shakes/part-00000 word_counts.txt
+
+
+
+******************
+LOCAL
+***************
+scp admin_jd@jrew-ssh.azurehdinsight.net:~/test.tar.gz .
+
+awk '{printf("%d %s\n", NR, $0)}' 100.txt.utf-8 > shakespeare_ln.txt
+
+scp admin_jd@jrew-ssh.azurehdinsight.net:~/index.txt .
