@@ -24,8 +24,8 @@ def main(separator='\t'):
         try:
             #if not current_word in index:
             index[current_word] = []
-            for current_word, num in group:
-              index[current_word].append(num)
+            for current_word, info in group:
+              index[current_word].append(info.split(separator))
             #else:
             #  dict[current_word].append()
               
@@ -33,9 +33,9 @@ def main(separator='\t'):
             #   from 'group' and create a total count
             #total_count = sum(int(count) for current_word, count in group)
             # Write to stdout
-            print "%s" % (current_word),
+            print "%s%s" % (current_word,separator),
             for i in index[current_word]:
-              print "%s%s" % (separator,i),
+              sys.stdout.write("(%s,%s,%s);" % (i[0],i[1],i[2]))
             print ""
         except ValueError:
             # Count was not a number, so do nothing

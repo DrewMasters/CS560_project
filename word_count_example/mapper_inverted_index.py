@@ -20,8 +20,10 @@ def main(separator='\t'):
     # Read the data using read_input
     data = read_input(sys.stdin)
     flag = 1
+    pos = 0
     # Process each words returned from read_input
     for words in data:
+        pos = 0
         # Process each word
         for word in words:
             if flag==1:
@@ -30,7 +32,8 @@ def main(separator='\t'):
             else:
               # Write to STDOUT
               if not word in stop_words:
-                print '%s%s%s' % (word, separator, num)
+                print '%s%s%s%s%s%s%d' % (word, separator, "1", separator, num, separator, pos)
+            pos=pos+1
         flag=1
 
 if __name__ == "__main__":
