@@ -30,7 +30,7 @@ while not exit_status:
 	elif not query in d.keys():
 		print "Word not in index"		
 	else:
-		print "Word appears in lines: ", 
+		print "%s->" % query, 
 		for s in d[query]:
-			print s,
+			print "(Doc1,%s)" % s,
 		print '\n\n'
