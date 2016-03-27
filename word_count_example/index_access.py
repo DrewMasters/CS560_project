@@ -2,7 +2,8 @@
 
 import re
 
-filename="index.txt"
+#filename="test.txt"
+filename="index_pos.txt"
 
 f = open(filename, "r")
 
@@ -10,16 +11,12 @@ file_contents = []
 d = {}
 
 for line in f:
-	line = line.strip('\n').replace('\t','')
-	flag=0
-	current_key = ""
-	for s in line.split():
-		if flag == 0:
-			flag = 1
-			current_key = s
-			d[s] = []
-		else:
-			d[current_key].append(s)
+        line = line.strip('\n')
+	line = line.split('\t')# = line.strip('\n').replace('\t',' ')
+	current_key = line[0]
+        d[current_key] = []
+	for s in line[1].split(';')[:-1]:
+	    d[current_key].append(s.replace('(','').replace(')','').split(','))
 
 exit_status = False
 
@@ -32,5 +29,5 @@ while not exit_status:
 	else:
 		print "%s->" % query, 
 		for s in d[query]:
-			print "(Doc1,%s)" % s,
+			print "%s" % s,
 		print '\n\n'
