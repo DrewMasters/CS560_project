@@ -13,11 +13,14 @@ def multiple_words(l, lookup):
 			tmp = []
 			break
 	flag = True
-	print 'tmp'
-	print tmp
+	#print 'tmp'
+	#print tmp
 	index=tmp[0]
+	#print index
+	#print index[0][2]
 	for i in tmp[1:]:
-		if not int(index[2])+1 == int(i[2]):
+		#print i
+		if not int(index[0][2])+1 == int(i[0][2]):
 			flag = False
 		index = i
 	if flag:
@@ -43,13 +46,13 @@ def and_f(l, lookup, tmp_result, not_tmp,first):
 		rr = []
 		if first:
 			tmp_result = lookup[word]
-			print 'first'
-			print tmp_result
+			#print 'first'
+			#print tmp_result
 		else:
-			print 's1:'
-			print and_result
-			print 's2:'
-			print tmp_result
+			#print 's1:'
+			#print and_result
+			#print 's2:'
+			#print tmp_result
 			for s1 in and_result:
 				for s2 in tmp_result:
 					if int(s1[1]) == int(s2[1]):
