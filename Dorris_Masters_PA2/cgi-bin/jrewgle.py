@@ -30,16 +30,9 @@ for line in f:
   for s in line[1].split(';')[:-1]:
       d[current_key].append(s.replace('(','').replace(')','').split(','))
 
-#query = query.lower()
-
 if query in d.keys():
   results = d[query] 
 
-#if 'REQUEST_METHOD' in os.environ.keys() and os.environ['REQUEST_METHOD']=="POST":
-#  length = int(os.environ['CONTENT_LENGTH'])
-#  query = sys.stdin.read(int(os.environ['CONTENT_LENGTH'])).split('&')
-#  for i in range(0,len(query#)):
-#    query[i] = "new"
 
 print """<!DOCTYPE html>
 <html>
