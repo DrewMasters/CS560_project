@@ -21,18 +21,22 @@ def main(separator='\t'):
     data = read_input(sys.stdin)
     flag = 1
     pos = 0
+    fn  = 0
     # Process each words returned from read_input
     for words in data:
         pos = 0
         # Process each word
         for word in words:
             if flag==1:
+              fn = word
+              flag = 2
+            elif flag==2:
               num = word
               flag = 0
             else:
               # Write to STDOUT
               if not word in stop_words:
-                print '%s%s%s%s%s%s%d' % (word, separator, "1", separator, num, separator, pos)
+                print '%s%s%s%s%s%s%d' % (word, separator, fn, separator, num, separator, pos)
             pos=pos+1
         flag=1
 
