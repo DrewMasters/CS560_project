@@ -6,12 +6,16 @@ from operator import itemgetter
 
 def multiple_words(l, lookup):
 	tmp = []
+	
+	#create list of all of the line numbers and line positions
 	for w in l:
 		if w in lookup:
 			tmp.append(lookup[w])
 		else:
 			tmp = []
 			break
+	
+	#go through list and make sure it is consecutive
 	flag = True
 	index=tmp[0]
 	for i in tmp[1:]:
@@ -27,8 +31,15 @@ def and_f(l, lookup, tmp_result, not_tmp,first):
 	if l[0].lower() == 'not' and not first:
 		ttmp_result, tnot_tmp = and_f(l[1:],lookup,tmp_result,not_tmp,False)
 		not_tmp.extend(ttmp_result)
+		
+		tmp_list = []
+		for tmp1 in tmp_result:
+			if not tmp1 in not_tmp:
+				tmp_list.append(tmp1)
+		tmp_result = tmp_list
 	elif l[0].lower() == 'not' and first:
 		ttmp_result, tnot_tmp = and_f(l[1:],lookup,tmp_result,not_tmp,True)
+		not_tmp.extend(ttmp_result)
 	else:
 		word = l[0]	
 		if len(l)>1:
